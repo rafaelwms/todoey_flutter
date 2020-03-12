@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:todoeyflutter/widgets/tasks_list.dart';
 
 class TasksScreen extends StatelessWidget {
+
+  Widget buildBottomSheet(BuildContext context){
+    return Container(
+      child: Center(
+        child: Text('This is a bottom sheet'),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.lightBlueAccent,
+        onPressed: (){
+          showModalBottomSheet(context: context, builder: buildBottomSheet);
+        },
         child: Icon(Icons.add),
       ),
       body: Column(
@@ -47,12 +60,14 @@ class TasksScreen extends StatelessWidget {
           ),
           Expanded(
             child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20.0),
                       topRight: Radius.circular(20.0))
               ),
+              child: TasksList(),
             ),
           )
         ],
@@ -60,3 +75,7 @@ class TasksScreen extends StatelessWidget {
     );
   }
 }
+
+
+
+
