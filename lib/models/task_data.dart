@@ -5,7 +5,8 @@ import 'package:todoeyflutter/models/task.dart';
 class TaskData extends ChangeNotifier{
 
   List<Task> _tasks = [
-
+   Task(name: 'New Task'),
+   Task(name: 'Uhulll'),
   ];
 
   UnmodifiableListView<Task> get tasks {
@@ -19,6 +20,16 @@ class TaskData extends ChangeNotifier{
   void addTask(String newTaskTitle){
     final task = Task(name: newTaskTitle);
     _tasks.add(task);
+    notifyListeners();
+  }
+
+  void updateTask(Task task){
+    task.toogleDone();
+    notifyListeners();
+  }
+
+  void deleteTask(Task task){
+    _tasks.remove(task);
     notifyListeners();
   }
 }
